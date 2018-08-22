@@ -17,4 +17,12 @@ RSpec.describe StaticPagesController, type: :controller do
     end
   end
 
+  describe "GET #about" do
+    subject { get :about}
+    it "returns the correct html" do
+      expect(response).to have_http_status(:success)
+      expect(subject).to render_template(:about)
+    end
+  end
+
 end
