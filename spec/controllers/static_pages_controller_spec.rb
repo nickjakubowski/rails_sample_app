@@ -3,6 +3,13 @@ require 'rails_helper'
 RSpec.describe StaticPagesController, type: :controller do
   let(:base_title) { "Ruby on Rails Tutorial Sample App" }
 
+  describe "GET root" do
+    subject { get :root_url}
+    it "renders the :index template" do
+      expect(get: root_url(subdomain: nil)).to route_to(controller: "static_pages", action: "home")
+    end
+  end
+
   describe "GET #home" do
     subject { get :home}
     it "returns the correct html" do
@@ -27,6 +34,15 @@ RSpec.describe StaticPagesController, type: :controller do
       expect(response).to have_http_status(:success)
       expect(subject).to render_template(:about)
       subject { should have_title("About | #{base_title}") }
+    end
+  end
+
+  describe "GET #contact" do
+    subject { get :contact}
+    it "returns the correct html" do
+      expect(response).to have_http_status(:success)
+      expect(subject).to render_template(:contact)
+      subject { should have_title("Contact | #{base_title}") }
     end
   end
 
