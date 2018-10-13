@@ -15,7 +15,12 @@ RSpec.describe StaticPagesController, type: :controller do
     it "returns the correct html" do
       expect(response).to have_http_status(:success)
       expect(subject).to render_template(:home)
-      subject { should have_title("Home | #{base_title}") }
+      # TODO: figure out why tests are not valid
+      # subject { should have_title("Home | #{base_title}") }
+      # subject { should have_link('Contact', href: contact_path)}
+      # subject { should have_link('Home', href: home_path)}
+      # subject { should have_link('Help', href: help_path)}
+      # subject { should have_link('About', href: about_path)}
     end
   end
 
